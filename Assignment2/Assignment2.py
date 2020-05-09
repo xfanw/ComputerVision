@@ -4,32 +4,23 @@ Spyder Editor
 Harris
 This is a temporary script file.
 """
-import cv2 as cv
 import numpy as np
-from matplotlib import pyplot as plt
+import cv2 as cv
+img = cv.imread('firstImage.jpg')
+img2 = cv.imread('secondImage.jpg')
+gray = cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+gray2 = cv.cvtColor(img2,cv.COLOR_BGR2GRAY)
 
-img = cv.imread("firstImage.jpg")
-img2 = cv.imread("secondImage.jpg")
-
-gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-"""
-gray = np.float32(gray)
-
-harris = cv.cornerHarris(gray, 2, 3, 0.04)
-
-img[harris > 0.01 * harris.max()] = [255, 0, 0]
-
-cv.imshow("", img)
-
-"""
-
-
-
-
+#Create SIFT
 sift = cv.xfeatures2d.SIFT_create()
-kp = sift.detect(gray,None)
-img=cv.drawKeypoints(gray,kp,img)
-cv.imwrite('sift_keypoints.jpg',img)
 
-img=cv.drawKeypoints(gray,kp,img,flags=cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
-cv.imshow('sift_keypoints.jpg',img)
+kp = sift.detect(gray,None)
+img = cv.drawKeypoints(img,kp,img)
+
+kp2 = sift.detect(gray2,None)
+img2 = cv.drawKeypoints(img2,kp2,img2)
+
+#img=cv.drawKeypoints(gray,kp,img,flags=cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+#Draw Img
+cv.imwrite('sift_keypoints_first.jpg',img)
+cv.imwrite('sift_keypoints_second.jpg',img2)
