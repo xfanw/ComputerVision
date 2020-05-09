@@ -13,6 +13,9 @@ img2 = cv.imread('secondImage.jpg')
 gray = cv.cvtColor(img,cv.COLOR_BGR2GRAY)
 gray2 = cv.cvtColor(img2,cv.COLOR_BGR2GRAY)
 
+"""
+    4.2 SIFT find key points
+"""
 #Create SIFT
 sift = cv.xfeatures2d.SIFT_create()
 
@@ -32,7 +35,9 @@ plt.imshow(img_kp_sift),plt.show()
 plt.imshow(img2_kp_sift),plt.show()
 
 
-
+"""
+    4.2 ORB find key points
+"""
 
 # Initiate SIFT detector
 orb = cv.ORB_create()
@@ -50,6 +55,10 @@ cv.imwrite('out_orb_keypoints_first.jpg',img_kp_orb)
 cv.imwrite('out_orb_keypoints_second.jpg',img2_kp_orb)
 plt.imshow(img_kp_orb),plt.show()
 plt.imshow(img2_kp_orb),plt.show()
+
+"""
+    4.4: Feature Matcher
+"""
 # create BFMatcher object
 bf = cv.BFMatcher(cv.NORM_HAMMING, crossCheck=True)
 
@@ -59,6 +68,9 @@ matches = bf.match(des,des2)
 # Sort them in the order of their distance.
 matches = sorted(matches, key = lambda x:x.distance)
 
+"""
+    4.4 different matches
+"""
 # Draw first 10 matches.
 img_out_10 = cv.drawMatches(img,kp,img2,kp2,matches[:10],None, flags=2)
 img_out_20 = cv.drawMatches(img,kp,img2,kp2,matches[:20],None, flags=10)
