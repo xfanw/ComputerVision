@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat May 23 22:28:34 2020
+"""
 
-@author: Administrator
+# Discussion in video
+# https://youtu.be/j_hV_LsxLqA
+
 """
-"""
+Referance:
+GMM of EM
 https://www.youtube.com/watch?v=kkAirywakmk
 """
 
